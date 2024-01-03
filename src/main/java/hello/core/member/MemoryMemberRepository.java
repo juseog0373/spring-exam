@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryMemberRepository implements MemberRepository {
-
     private static Map<Long, Member> store = new HashMap<>(); //동시성 이슈가 있을 수 있음. ConcurrentHashMap을 사용해야함. 예제니 Pass
 
     @Override
