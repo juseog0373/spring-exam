@@ -13,8 +13,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class ConfigurationSingletoneTest {
     @Test
-    void configurdationTest() {
-        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    void configurationTest(){
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
         OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);
@@ -23,13 +23,15 @@ public class ConfigurationSingletoneTest {
         MemberRepository memberRepository1 = memberService.getMemberRepository();
         MemberRepository memberRepository2 = orderService.getMemberRepository();
 
-        System.out.println("memberService -> memberRepository = " + memberRepository1);
-        System.out.println("orderService -> memberRepository = " + memberRepository2);
+        //모두 같은 인스턴스를 참고하고 있다.
+        System.out.println("memberService -> memberRepository = " + memberService.getMemberRepository());
+        System.out.println("orderService -> memberRepository = " + orderService.getMemberRepository());
         System.out.println("memberRepository = " + memberRepository);
 
-        assertThat(memberService.getMemberRepository()).isSameAs(memberRepository);
-        assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
+        assertThat(memberRepository1).isSameAs(memberRepository2);
+        assertThat(memberRepository2).isSameAs(memberRepository);
     }
+
 
     @Test
     void configurationDeep() {

@@ -10,7 +10,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class AutoAppConfigTest {
 
     @Test
-    void basicScan() {
-
+    public void basicScan() {
+        //given
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+        //when
+        MemberService memberService = ac.getBean(MemberService.class);
+        //then
+        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
     }
 }

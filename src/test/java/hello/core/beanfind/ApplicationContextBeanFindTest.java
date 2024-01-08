@@ -34,6 +34,7 @@ public class ApplicationContextBeanFindTest {
         for (String key : beansOfType.keySet()) {
             System.out.println("key = " + key + " value = " + beansOfType.get(key));
         }
+        assertThat(beansOfType.size()).isEqualTo(2);
     }
 
     @Configuration
