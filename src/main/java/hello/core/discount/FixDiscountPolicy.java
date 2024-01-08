@@ -4,7 +4,6 @@ import hello.core.member.Grade;
 import hello.core.member.Member;
 
 public class FixDiscountPolicy implements DiscountPolicy {
-
     private int dicountFixAmount = 1000; //1000원 할인
 
     @Override
